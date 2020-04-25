@@ -27,11 +27,8 @@ public class FractionMatrixUTest {
 
 	private static Map<String, Object> testData = new Hashtable<String, Object>();
 
-	private static void areMatricesEqual(
-		String testName,
-		FractionMatrix reference,
-		FractionMatrix transformed,
-		FractionMatrix expected) throws Exception {
+	private static void areMatricesEqual(String testName, FractionMatrix reference, FractionMatrix transformed,
+			FractionMatrix expected) throws Exception {
 
 		if (transformed.rowCount() != reference.rowCount())
 			throw new Exception(testName + ": wrong row count (1)");
@@ -52,7 +49,7 @@ public class FractionMatrixUTest {
 			}
 		}
 	}
-	
+
 	private static void testConstructorIntArray(int[][] m, int divisor) throws Exception {
 
 		FractionMatrix ma = new FractionMatrix(m, divisor);
@@ -107,15 +104,15 @@ public class FractionMatrixUTest {
 	}
 
 	private static void testConstructor() throws Exception {
-		int[][] im = (int[][])testData.get("mi4x5");
-		Fraction[][] m = (Fraction[][])testData.get("m4x5");
+		int[][] im = (int[][]) testData.get("mi4x5");
+		Fraction[][] m = (Fraction[][]) testData.get("m4x5");
 		testConstructorIntArray(im, 3);
 		testConstructor(m);
 	}
 
 	private static void testGetElement() throws Exception {
 
-		Fraction[][] m4x5 = (Fraction[][])testData.get("m4x5");
+		Fraction[][] m4x5 = (Fraction[][]) testData.get("m4x5");
 		Fraction get_m4x5_1_3_Expected = (Fraction) testData.get("get_m4x5_1_3_Expected");
 		Fraction get_m4x5_3_1_Expected = (Fraction) testData.get("get_m4x5_3_1_Expected");
 		FractionMatrix ma = new FractionMatrix(m4x5);
@@ -127,24 +124,24 @@ public class FractionMatrixUTest {
 	}
 
 	private static void testTranspose() throws Exception {
-		Fraction[][] m5x4 = (Fraction[][])testData.get("m5x4");
-		Fraction[][] transpose_m5x4_Expected = (Fraction[][])testData.get("transpose_m5x4_Expected");
+		Fraction[][] m5x4 = (Fraction[][]) testData.get("m5x4");
+		Fraction[][] transpose_m5x4_Expected = (Fraction[][]) testData.get("transpose_m5x4_Expected");
 		FractionMatrix ma = new FractionMatrix(m5x4).transpose();
 		areMatricesEqual("transpose", ma, ma, new FractionMatrix(transpose_m5x4_Expected));
 	}
 
 	private static void testHadamardProduct() throws Exception {
 
-		Fraction[][] m2x3 = (Fraction[][])testData.get("m2x3");
-		Fraction[][] hadamard_Multiplier = (Fraction[][])testData.get("hadamard_Multiplier");
-		int[][] hadamard_iMultiplier = (int[][])testData.get("hadamard_iMultiplier");
+		Fraction[][] m2x3 = (Fraction[][]) testData.get("m2x3");
+		Fraction[][] hadamard_Multiplier = (Fraction[][]) testData.get("hadamard_Multiplier");
+		int[][] hadamard_iMultiplier = (int[][]) testData.get("hadamard_iMultiplier");
 
 		FractionMatrix hadamard_Multiplier_X_m2x3_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("hadamard_Multiplier_X_m2x3_Expected"));
+				(Fraction[][]) testData.get("hadamard_Multiplier_X_m2x3_Expected"));
 
 		FractionMatrix hadamard_iMultiplier_X_m2x3_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("hadamard_iMultiplier_X_m2x3_Expected"));
-		
+				(Fraction[][]) testData.get("hadamard_iMultiplier_X_m2x3_Expected"));
+
 		FractionMatrix ma = new FractionMatrix(m2x3);
 
 		FractionMatrix result = ma.hadamard_product(hadamard_iMultiplier);
@@ -162,13 +159,15 @@ public class FractionMatrixUTest {
 
 	private static void testAddScalar() throws Exception {
 
-		Fraction[][] m2x3 = (Fraction[][])testData.get("m2x3");
-		
-		Fraction addScalar_Addend = (Fraction)testData.get("addScalar_Addend");
-		FractionMatrix addScalar_Addend_p_m2x3_Expected = new FractionMatrix((Fraction[][])testData.get("addScalar_Addend_+_m2x3_Expected"));
+		Fraction[][] m2x3 = (Fraction[][]) testData.get("m2x3");
 
-		int addScalar_iAddend = (int)testData.get("addScalar_iAddend");
-		FractionMatrix addScalar_iAddend_p_m2x3_Expected = new FractionMatrix((Fraction[][])testData.get("addScalar_iAddend_+_m2x3_Expected"));
+		Fraction addScalar_Addend = (Fraction) testData.get("addScalar_Addend");
+		FractionMatrix addScalar_Addend_p_m2x3_Expected = new FractionMatrix(
+				(Fraction[][]) testData.get("addScalar_Addend_+_m2x3_Expected"));
+
+		int addScalar_iAddend = (int) testData.get("addScalar_iAddend");
+		FractionMatrix addScalar_iAddend_p_m2x3_Expected = new FractionMatrix(
+				(Fraction[][]) testData.get("addScalar_iAddend_+_m2x3_Expected"));
 
 		FractionMatrix ma = new FractionMatrix(m2x3);
 		FractionMatrix result = ma.add(addScalar_iAddend);
@@ -179,15 +178,15 @@ public class FractionMatrixUTest {
 	}
 
 	private static void testAdd() throws Exception {
-		Fraction[][] m2x2 = (Fraction[][])testData.get("m2x2");
-		
-		Fraction[][] addMatrix_Addend = (Fraction[][])testData.get("addMatrix_Addend");
-		FractionMatrix addMatrix_Addend_p_m2x2_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("addMatrix_Addend_+_m2x2_Expected"));
+		Fraction[][] m2x2 = (Fraction[][]) testData.get("m2x2");
 
-		int[][] addMatrix_iAddend = (int[][])testData.get("addMatrix_iAddend");
+		Fraction[][] addMatrix_Addend = (Fraction[][]) testData.get("addMatrix_Addend");
+		FractionMatrix addMatrix_Addend_p_m2x2_Expected = new FractionMatrix(
+				(Fraction[][]) testData.get("addMatrix_Addend_+_m2x2_Expected"));
+
+		int[][] addMatrix_iAddend = (int[][]) testData.get("addMatrix_iAddend");
 		FractionMatrix addMatrix_iAddend_p_m2x2_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("addMatrix_iAddend_+_m2x2_Expected"));
+				(Fraction[][]) testData.get("addMatrix_iAddend_+_m2x2_Expected"));
 
 		FractionMatrix ma = new FractionMatrix(m2x2);
 
@@ -208,14 +207,14 @@ public class FractionMatrixUTest {
 	}
 
 	private static void testMultiplyScalar() throws Exception {
-		Fraction[][] m2x2 = (Fraction[][])testData.get("m2x2");
-		Fraction multiplyScalar_Multiplyer = (Fraction)testData.get("multiplyScalar_Multiplyer");
-		int multiplyScalar_iMultiplyer = (int)testData.get("multiplyScalar_iMultiplyer");
+		Fraction[][] m2x2 = (Fraction[][]) testData.get("m2x2");
+		Fraction multiplyScalar_Multiplyer = (Fraction) testData.get("multiplyScalar_Multiplyer");
+		int multiplyScalar_iMultiplyer = (int) testData.get("multiplyScalar_iMultiplyer");
 		FractionMatrix multiplyScalar_iMultiplyer_X_m2x2_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("multiplyScalar_iMultiplyer_X_m2x2_Expected"));
-			
+				(Fraction[][]) testData.get("multiplyScalar_iMultiplyer_X_m2x2_Expected"));
+
 		FractionMatrix multiplyScalar_Multiplyer_X_m2x2_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("multiplyScalar_Multiplyer_X_m2x2_Expected"));
+				(Fraction[][]) testData.get("multiplyScalar_Multiplyer_X_m2x2_Expected"));
 
 		FractionMatrix ma = new FractionMatrix(m2x2);
 		FractionMatrix result = ma.multiply(multiplyScalar_iMultiplyer);
@@ -227,24 +226,24 @@ public class FractionMatrixUTest {
 
 	private static void testMultiply() throws Exception {
 
-		Fraction[][] m4x5 = (Fraction[][])testData.get("m4x5");
-		Fraction[][] m5x4 = (Fraction[][])testData.get("m5x4");
-		Fraction[][] m3x3 = (Fraction[][])testData.get("m3x3");
+		Fraction[][] m4x5 = (Fraction[][]) testData.get("m4x5");
+		Fraction[][] m5x4 = (Fraction[][]) testData.get("m5x4");
+		Fraction[][] m3x3 = (Fraction[][]) testData.get("m3x3");
 
-		Fraction[][] multiplyMatrix_Multiplyer3x3 = (Fraction[][])testData.get("multiplyMatrix_Multiplyer3x3");
-		int[][] multiplyMatrix_iMultiplyer3x3 = (int[][])testData.get("multiplyMatrix_iMultiplyer3x3");
+		Fraction[][] multiplyMatrix_Multiplyer3x3 = (Fraction[][]) testData.get("multiplyMatrix_Multiplyer3x3");
+		int[][] multiplyMatrix_iMultiplyer3x3 = (int[][]) testData.get("multiplyMatrix_iMultiplyer3x3");
 
 		FractionMatrix multiplyMatrix_m4x5_X_m5x4_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("multiplyMatrix_m4x5_X_m5x4_Expected"));
+				(Fraction[][]) testData.get("multiplyMatrix_m4x5_X_m5x4_Expected"));
 
 		FractionMatrix multiplyMatrix_m5x4_X_m4x5_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("multiplyMatrix_m5x4_X_m4x5_Expected"));
+				(Fraction[][]) testData.get("multiplyMatrix_m5x4_X_m4x5_Expected"));
 
 		FractionMatrix multiplyMatrix_iMultiplyer3x3_X_m3x3_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("multiplyMatrix_iMultiplyer3x3_X_m3x3_Expected"));
+				(Fraction[][]) testData.get("multiplyMatrix_iMultiplyer3x3_X_m3x3_Expected"));
 
 		FractionMatrix multiplyMatrix_Multiplyer3x3_X_m3x3_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("multiplyMatrix_Multiplyer3x3_X_m3x3_Expected"));
+				(Fraction[][]) testData.get("multiplyMatrix_Multiplyer3x3_X_m3x3_Expected"));
 
 		FractionMatrix ma = new FractionMatrix(m4x5);
 		FractionMatrix mb = new FractionMatrix(m5x4);
@@ -268,15 +267,15 @@ public class FractionMatrixUTest {
 	}
 
 	private static void testDivide() throws Exception {
-		Fraction[][] m2x2 = (Fraction[][])testData.get("m2x2");
-		Fraction divideScalar_Divisor = (Fraction)testData.get("divideScalar_Divisor");
-		int divideScalar_iDivisor = (int)testData.get("divideScalar_iDivisor");
+		Fraction[][] m2x2 = (Fraction[][]) testData.get("m2x2");
+		Fraction divideScalar_Divisor = (Fraction) testData.get("divideScalar_Divisor");
+		int divideScalar_iDivisor = (int) testData.get("divideScalar_iDivisor");
 
 		FractionMatrix divideScalar_Divisor_d_m2x2_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("divideScalar_Divisor_/_m2x2_Expected"));
+				(Fraction[][]) testData.get("divideScalar_Divisor_/_m2x2_Expected"));
 
 		FractionMatrix divideScalar_iDivisor_d_m2x2_Expected = new FractionMatrix(
-			(Fraction[][])testData.get("divideScalar_iDivisor_/_m2x2_Expected"));
+				(Fraction[][]) testData.get("divideScalar_iDivisor_/_m2x2_Expected"));
 
 		FractionMatrix ma = new FractionMatrix(m2x2);
 		FractionMatrix result = ma.divide(divideScalar_Divisor);
@@ -287,9 +286,9 @@ public class FractionMatrixUTest {
 	}
 
 	private static void testDeterminantInternal(String testDataKey) throws Exception {
-		Fraction[][] arr = (Fraction[][])testData.get(testDataKey);
-		Fraction expected = (Fraction)testData.get("determinant_" + testDataKey + "_Expected");
-		
+		Fraction[][] arr = (Fraction[][]) testData.get(testDataKey);
+		Fraction expected = (Fraction) testData.get("determinant_" + testDataKey + "_Expected");
+
 		FractionMatrix ma = new FractionMatrix(arr);
 		Fraction determinant = ma.determinant();
 		if (!determinant.equals(expected))
@@ -304,7 +303,7 @@ public class FractionMatrixUTest {
 		testDeterminantInternal("m5x5");
 
 		boolean thrown = false;
-		FractionMatrix ma = new FractionMatrix((Fraction[][])testData.get("m4x5"));
+		FractionMatrix ma = new FractionMatrix((Fraction[][]) testData.get("m4x5"));
 		try {
 			System.out.println(ma.determinant());
 		} catch (ArithmeticException ex) {
@@ -317,29 +316,32 @@ public class FractionMatrixUTest {
 
 	private static void testAdjugateInternal(String testDataKey) throws Exception {
 
-		Fraction[][] arr = (Fraction[][])testData.get(testDataKey);
+		Fraction[][] arr = (Fraction[][]) testData.get(testDataKey);
 		FractionMatrix ma = new FractionMatrix(arr);
-		
+
 		boolean mustThrow = ma.rowCount() != ma.columnCount();
 		if (mustThrow) {
-			try { System.out.println(ma.adjugate().rowCount()); }
-			catch (ArithmeticException ex) { return; }
+			try {
+				System.out.println(ma.adjugate().rowCount());
+			} catch (ArithmeticException ex) {
+				return;
+			}
 			throw new Exception("adjugate (" + testDataKey + "): exception not thrown for non-square matrix");
 		}
 
 		Fraction[][] identity = (Fraction[][]) testData.get("identity" + testDataKey.substring(1));
-		Fraction[][] expected = (Fraction[][])testData.get("adjugate_" + testDataKey + "_Expected");
+		Fraction[][] expected = (Fraction[][]) testData.get("adjugate_" + testDataKey + "_Expected");
 
 		FractionMatrix result = ma.adjugate();
 		areMatricesEqual("adjugate (" + testDataKey + "):", ma, result, new FractionMatrix(expected));
 
 		FractionMatrix identityXdeterminant = ma.multiply(result);
 		areMatricesEqual("adjugate (" + testDataKey + " - test identity 1)", ma, identityXdeterminant,
-			new FractionMatrix(identity).multiply(ma.determinant()));
+				new FractionMatrix(identity).multiply(ma.determinant()));
 
 		identityXdeterminant = result.multiply(ma);
 		areMatricesEqual("adjugate (" + testDataKey + " - test identity 2)", result, identityXdeterminant,
-			new FractionMatrix(identity).multiply(ma.determinant()));
+				new FractionMatrix(identity).multiply(ma.determinant()));
 	}
 
 	private static void testAdjugate() throws Exception {
@@ -352,28 +354,34 @@ public class FractionMatrixUTest {
 	}
 
 	private static void testInvertInternal(String testDataKey) throws Exception {
-		Fraction[][] arr = (Fraction[][])testData.get(testDataKey);
+		Fraction[][] arr = (Fraction[][]) testData.get(testDataKey);
 		FractionMatrix ma = new FractionMatrix(arr);
-		
+
 		boolean mustThrow = ma.rowCount() != ma.columnCount();
 		if (mustThrow) {
-			try { System.out.println(ma.invert().rowCount()); }
-			catch (ArithmeticException ex) { return; }
+			try {
+				System.out.println(ma.invert().rowCount());
+			} catch (ArithmeticException ex) {
+				return;
+			}
 			throw new Exception("invert (" + testDataKey + "): exception not thrown for non-square matrix");
 		}
-		
+
 		mustThrow = ma.determinant().equals(new Fraction(0, 1));
 		if (mustThrow) {
-			try { System.out.println(ma.invert().rowCount()); }
-			catch (ArithmeticException ex) { return; }
+			try {
+				System.out.println(ma.invert().rowCount());
+			} catch (ArithmeticException ex) {
+				return;
+			}
 			throw new Exception("invert (" + testDataKey + "): exception not thrown for matrix with determinant == 0");
 		}
 
 		FractionMatrix identity = new FractionMatrix(
-			(Fraction[][]) testData.get("identity" + testDataKey.substring(1)));
+				(Fraction[][]) testData.get("identity" + testDataKey.substring(1)));
 
 		FractionMatrix expected = new FractionMatrix(
-			(Fraction[][])testData.get("invert_" + testDataKey + "_Expected"));
+				(Fraction[][]) testData.get("invert_" + testDataKey + "_Expected"));
 
 		FractionMatrix result = ma.invert();
 		areMatricesEqual("invert (" + testDataKey + "):", ma, result, expected);
@@ -394,28 +402,34 @@ public class FractionMatrixUTest {
 	}
 
 	private static void testInvertIntMatrixInternal(String testDataKey) throws Exception {
-		int[][] arr = (int[][])testData.get(testDataKey);
+		int[][] arr = (int[][]) testData.get(testDataKey);
 		IntMatrix im = new IntMatrix(arr);
 
 		boolean mustThrow = im.rowCount() != im.columnCount();
 		if (mustThrow) {
-			try { System.out.println(FractionMatrix.invert(im).rowCount()); }
-			catch (Exception ex) { return; }
+			try {
+				System.out.println(FractionMatrix.invert(im).rowCount());
+			} catch (Exception ex) {
+				return;
+			}
 			throw new Exception("invert (static): exception not thrown for non-square matrix");
 		}
 
 		mustThrow = im.determinant() == 0;
 		if (mustThrow) {
-			try { System.out.println(FractionMatrix.invert(im).rowCount()); }
-			catch (Exception ex) { return; }
+			try {
+				System.out.println(FractionMatrix.invert(im).rowCount());
+			} catch (Exception ex) {
+				return;
+			}
 			throw new Exception("invert (static): exception not thrown for matrix with determinant == 0");
 		}
 
 		FractionMatrix identity = new FractionMatrix(
-			(Fraction[][]) testData.get("identity" + testDataKey.substring(1)));
+				(Fraction[][]) testData.get("identity" + testDataKey.substring(1)));
 
 		FractionMatrix expected = new FractionMatrix(
-			(Fraction[][])testData.get("invert_" + testDataKey + "_Expected"));
+				(Fraction[][]) testData.get("invert_" + testDataKey + "_Expected"));
 
 		FractionMatrix result = FractionMatrix.invert(im);
 		areMatricesEqual("invert (static)", result, result, expected);
@@ -439,8 +453,7 @@ public class FractionMatrixUTest {
 
 		try {
 			testData = DataReaderUTest.parseTestData("gist/Math/Matrix/FractionMatrixUTest.txt");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.err.println("FractionMatrixUTest: exception parsing test data\n" + ex);
 			return -1;
 		}

@@ -79,12 +79,13 @@ public final class DecimalMatrix {
 		}
 	}
 
-	//because java sucks
-    private static boolean doubleEquals(double a, double b) {
-        if (a == b) return true;
-        a = Math.abs(a - b);
-        return a < 0.00000000000001;
-    }
+	// because java sucks
+	private static boolean doubleEquals(double a, double b) {
+		if (a == b)
+			return true;
+		a = Math.abs(a - b);
+		return a < 0.00000000000001;
+	}
 
 	public int rowCount() {
 		return matrix.length;
@@ -308,7 +309,7 @@ public final class DecimalMatrix {
 
 		return new DecimalMatrix(result, true, false);
 	}
-	
+
 	public DecimalMatrix add(IntMatrix m) throws ArithmeticException {
 		int mRowCount = m.rowCount();
 		int mColumnCount = m.columnCount();
@@ -347,7 +348,7 @@ public final class DecimalMatrix {
 		}
 		return new DecimalMatrix(result, true, false);
 	}
-	
+
 	public DecimalMatrix multiply(int[][] m) throws ArithmeticException {
 		int mColumnCount = m.length > 0 ? m[0].length : 0;
 		if (m.length != columnCount() || mColumnCount != matrix.length)

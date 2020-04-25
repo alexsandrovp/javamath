@@ -25,20 +25,20 @@ import gist.DataReaderUTest;
 public class DecimalMatrixUTest {
 
 	private static Map<String, Object> testData = new Hashtable<String, Object>();
-   
-    //because java sucks
-    private static boolean doubleEquals(double a, double b) {
-        if (a == b) return true;
-        a = Math.abs(a - b);
-        return a < 0.00000000000001;
-    }
 
-	private static void areMatricesEqual(String testName,
-        DecimalMatrix reference, DecimalMatrix transformed, DecimalMatrix expected)
-		throws Exception {
+	// because java sucks
+	private static boolean doubleEquals(double a, double b) {
+		if (a == b)
+			return true;
+		a = Math.abs(a - b);
+		return a < 0.00000000000001;
+	}
+
+	private static void areMatricesEqual(String testName, DecimalMatrix reference, DecimalMatrix transformed,
+			DecimalMatrix expected) throws Exception {
 		if (transformed.rowCount() != reference.rowCount())
-		throw new Exception(testName + ": wrong row count (1)");
-	
+			throw new Exception(testName + ": wrong row count (1)");
+
 		if (transformed.rowCount() != expected.rowCount())
 			throw new Exception(testName + ": wrong row count (2)");
 
@@ -108,16 +108,16 @@ public class DecimalMatrixUTest {
 			}
 		}
 	}
-	
+
 	private static void testConstructor() throws Exception {
-		int[][] im = (int[][])testData.get("mi4x5");
-		double[][] m = (double[][])testData.get("m4x5");
+		int[][] im = (int[][]) testData.get("mi4x5");
+		double[][] m = (double[][]) testData.get("m4x5");
 		testConstructorIntArray(im);
 		testConstructor(m);
 	}
 
 	private static void testGetElement() throws Exception {
-		double[][] m4x5 = (double[][])testData.get("m4x5");
+		double[][] m4x5 = (double[][]) testData.get("m4x5");
 		double get_m4x5_1_3_Expected = (double) testData.get("get_m4x5_1_3_Expected");
 		double get_m4x5_3_1_Expected = (double) testData.get("get_m4x5_3_1_Expected");
 		DecimalMatrix ma = new DecimalMatrix(m4x5);
@@ -129,24 +129,24 @@ public class DecimalMatrixUTest {
 	}
 
 	private static void testTranspose() throws Exception {
-		double[][] m5x4 = (double[][])testData.get("m5x4");
-		double[][] transpose_m5x4_Expected = (double[][])testData.get("transpose_m5x4_Expected");
+		double[][] m5x4 = (double[][]) testData.get("m5x4");
+		double[][] transpose_m5x4_Expected = (double[][]) testData.get("transpose_m5x4_Expected");
 		DecimalMatrix ma = new DecimalMatrix(m5x4).transpose();
 		areMatricesEqual("transpose", ma, ma, new DecimalMatrix(transpose_m5x4_Expected));
 	}
 
 	private static void testHadamardProduct() throws Exception {
 
-		double[][] m2x3 = (double[][])testData.get("m2x3");
-		double[][] hadamard_Multiplier = (double[][])testData.get("hadamard_Multiplier");
-		int[][] hadamard_iMultiplier = (int[][])testData.get("hadamard_iMultiplier");
+		double[][] m2x3 = (double[][]) testData.get("m2x3");
+		double[][] hadamard_Multiplier = (double[][]) testData.get("hadamard_Multiplier");
+		int[][] hadamard_iMultiplier = (int[][]) testData.get("hadamard_iMultiplier");
 
 		DecimalMatrix hadamard_Multiplier_X_m2x3_Expected = new DecimalMatrix(
-			(double[][])testData.get("hadamard_Multiplier_X_m2x3_Expected"));
+				(double[][]) testData.get("hadamard_Multiplier_X_m2x3_Expected"));
 
 		DecimalMatrix hadamard_iMultiplier_X_m2x3_Expected = new DecimalMatrix(
-			(double[][])testData.get("hadamard_iMultiplier_X_m2x3_Expected"));
-		
+				(double[][]) testData.get("hadamard_iMultiplier_X_m2x3_Expected"));
+
 		DecimalMatrix ma = new DecimalMatrix(m2x3);
 
 		DecimalMatrix result = ma.hadamard_product(hadamard_iMultiplier);
@@ -164,13 +164,15 @@ public class DecimalMatrixUTest {
 
 	private static void testAddScalar() throws Exception {
 
-		double[][] m2x3 = (double[][])testData.get("m2x3");
-		
-		double addScalar_Addend = (double)testData.get("addScalar_Addend");
-		DecimalMatrix addScalar_Addend_p_m2x3_Expected = new DecimalMatrix((double[][])testData.get("addScalar_Addend_+_m2x3_Expected"));
+		double[][] m2x3 = (double[][]) testData.get("m2x3");
 
-		int addScalar_iAddend = (int)testData.get("addScalar_iAddend");
-		DecimalMatrix addScalar_iAddend_p_m2x3_Expected = new DecimalMatrix((double[][])testData.get("addScalar_iAddend_+_m2x3_Expected"));
+		double addScalar_Addend = (double) testData.get("addScalar_Addend");
+		DecimalMatrix addScalar_Addend_p_m2x3_Expected = new DecimalMatrix(
+				(double[][]) testData.get("addScalar_Addend_+_m2x3_Expected"));
+
+		int addScalar_iAddend = (int) testData.get("addScalar_iAddend");
+		DecimalMatrix addScalar_iAddend_p_m2x3_Expected = new DecimalMatrix(
+				(double[][]) testData.get("addScalar_iAddend_+_m2x3_Expected"));
 
 		DecimalMatrix ma = new DecimalMatrix(m2x3);
 		DecimalMatrix result = ma.add(addScalar_iAddend);
@@ -181,15 +183,15 @@ public class DecimalMatrixUTest {
 	}
 
 	private static void testAdd() throws Exception {
-		double[][] m2x2 = (double[][])testData.get("m2x2");
-		
-		double[][] addMatrix_Addend = (double[][])testData.get("addMatrix_Addend");
-		DecimalMatrix addMatrix_Addend_p_m2x2_Expected = new DecimalMatrix(
-			(double[][])testData.get("addMatrix_Addend_+_m2x2_Expected"));
+		double[][] m2x2 = (double[][]) testData.get("m2x2");
 
-		int[][] addMatrix_iAddend = (int[][])testData.get("addMatrix_iAddend");
+		double[][] addMatrix_Addend = (double[][]) testData.get("addMatrix_Addend");
+		DecimalMatrix addMatrix_Addend_p_m2x2_Expected = new DecimalMatrix(
+				(double[][]) testData.get("addMatrix_Addend_+_m2x2_Expected"));
+
+		int[][] addMatrix_iAddend = (int[][]) testData.get("addMatrix_iAddend");
 		DecimalMatrix addMatrix_iAddend_p_m2x2_Expected = new DecimalMatrix(
-			(double[][])testData.get("addMatrix_iAddend_+_m2x2_Expected"));
+				(double[][]) testData.get("addMatrix_iAddend_+_m2x2_Expected"));
 
 		DecimalMatrix ma = new DecimalMatrix(m2x2);
 
@@ -210,14 +212,14 @@ public class DecimalMatrixUTest {
 	}
 
 	private static void testMultiplyScalar() throws Exception {
-		double[][] m2x2 = (double[][])testData.get("m2x2");
-		double multiplyScalar_Multiplyer = (double)testData.get("multiplyScalar_Multiplyer");
-		int multiplyScalar_iMultiplyer = (int)testData.get("multiplyScalar_iMultiplyer");
+		double[][] m2x2 = (double[][]) testData.get("m2x2");
+		double multiplyScalar_Multiplyer = (double) testData.get("multiplyScalar_Multiplyer");
+		int multiplyScalar_iMultiplyer = (int) testData.get("multiplyScalar_iMultiplyer");
 		DecimalMatrix multiplyScalar_iMultiplyer_X_m2x2_Expected = new DecimalMatrix(
-			(double[][])testData.get("multiplyScalar_iMultiplyer_X_m2x2_Expected"));
-			
+				(double[][]) testData.get("multiplyScalar_iMultiplyer_X_m2x2_Expected"));
+
 		DecimalMatrix multiplyScalar_Multiplyer_X_m2x2_Expected = new DecimalMatrix(
-			(double[][])testData.get("multiplyScalar_Multiplyer_X_m2x2_Expected"));
+				(double[][]) testData.get("multiplyScalar_Multiplyer_X_m2x2_Expected"));
 
 		DecimalMatrix ma = new DecimalMatrix(m2x2);
 		DecimalMatrix result = ma.multiply(multiplyScalar_iMultiplyer);
@@ -229,24 +231,24 @@ public class DecimalMatrixUTest {
 
 	private static void testMultiply() throws Exception {
 
-		double[][] m4x5 = (double[][])testData.get("m4x5");
-		double[][] m5x4 = (double[][])testData.get("m5x4");
-		double[][] m3x3 = (double[][])testData.get("m3x3");
+		double[][] m4x5 = (double[][]) testData.get("m4x5");
+		double[][] m5x4 = (double[][]) testData.get("m5x4");
+		double[][] m3x3 = (double[][]) testData.get("m3x3");
 
-		double[][] multiplyMatrix_Multiplyer3x3 = (double[][])testData.get("multiplyMatrix_Multiplyer3x3");
-		int[][] multiplyMatrix_iMultiplyer3x3 = (int[][])testData.get("multiplyMatrix_iMultiplyer3x3");
+		double[][] multiplyMatrix_Multiplyer3x3 = (double[][]) testData.get("multiplyMatrix_Multiplyer3x3");
+		int[][] multiplyMatrix_iMultiplyer3x3 = (int[][]) testData.get("multiplyMatrix_iMultiplyer3x3");
 
 		DecimalMatrix multiplyMatrix_m4x5_X_m5x4_Expected = new DecimalMatrix(
-			(double[][])testData.get("multiplyMatrix_m4x5_X_m5x4_Expected"));
+				(double[][]) testData.get("multiplyMatrix_m4x5_X_m5x4_Expected"));
 
 		DecimalMatrix multiplyMatrix_m5x4_X_m4x5_Expected = new DecimalMatrix(
-			(double[][])testData.get("multiplyMatrix_m5x4_X_m4x5_Expected"));
+				(double[][]) testData.get("multiplyMatrix_m5x4_X_m4x5_Expected"));
 
 		DecimalMatrix multiplyMatrix_iMultiplyer3x3_X_m3x3_Expected = new DecimalMatrix(
-			(double[][])testData.get("multiplyMatrix_iMultiplyer3x3_X_m3x3_Expected"));
+				(double[][]) testData.get("multiplyMatrix_iMultiplyer3x3_X_m3x3_Expected"));
 
 		DecimalMatrix multiplyMatrix_Multiplyer3x3_X_m3x3_Expected = new DecimalMatrix(
-			(double[][])testData.get("multiplyMatrix_Multiplyer3x3_X_m3x3_Expected"));
+				(double[][]) testData.get("multiplyMatrix_Multiplyer3x3_X_m3x3_Expected"));
 
 		DecimalMatrix ma = new DecimalMatrix(m4x5);
 		DecimalMatrix mb = new DecimalMatrix(m5x4);
@@ -268,17 +270,17 @@ public class DecimalMatrixUTest {
 		result = ma.multiply(new IntMatrix(multiplyMatrix_iMultiplyer3x3));
 		areMatricesEqual("multiply(IntMatrix)", result, result, multiplyMatrix_iMultiplyer3x3_X_m3x3_Expected);
 	}
-    
-    private static void testDivide() throws Exception {
-		double[][] m2x2 = (double[][])testData.get("m2x2");
-		double divideScalar_Divisor = (double)testData.get("divideScalar_Divisor");
-		int divideScalar_iDivisor = (int)testData.get("divideScalar_iDivisor");
+
+	private static void testDivide() throws Exception {
+		double[][] m2x2 = (double[][]) testData.get("m2x2");
+		double divideScalar_Divisor = (double) testData.get("divideScalar_Divisor");
+		int divideScalar_iDivisor = (int) testData.get("divideScalar_iDivisor");
 
 		DecimalMatrix divideScalar_Divisor_d_m2x2_Expected = new DecimalMatrix(
-			(double[][])testData.get("divideScalar_Divisor_/_m2x2_Expected"));
+				(double[][]) testData.get("divideScalar_Divisor_/_m2x2_Expected"));
 
 		DecimalMatrix divideScalar_iDivisor_d_m2x2_Expected = new DecimalMatrix(
-			(double[][])testData.get("divideScalar_iDivisor_/_m2x2_Expected"));
+				(double[][]) testData.get("divideScalar_iDivisor_/_m2x2_Expected"));
 
 		DecimalMatrix ma = new DecimalMatrix(m2x2);
 		DecimalMatrix result = ma.divide(divideScalar_Divisor);
@@ -289,9 +291,9 @@ public class DecimalMatrixUTest {
 	}
 
 	private static void testDeterminantInternal(String testDataKey) throws Exception {
-		double[][] arr = (double[][])testData.get(testDataKey);
-		double expected = (double)testData.get("determinant_" + testDataKey + "_Expected");
-		
+		double[][] arr = (double[][]) testData.get(testDataKey);
+		double expected = (double) testData.get("determinant_" + testDataKey + "_Expected");
+
 		DecimalMatrix ma = new DecimalMatrix(arr);
 		double determinant = ma.determinant();
 		if (!doubleEquals(determinant, expected))
@@ -299,14 +301,14 @@ public class DecimalMatrixUTest {
 	}
 
 	private static void testDeterminant() throws Exception {
-		
+
 		testDeterminantInternal("m1x1");
 		testDeterminantInternal("m2x2");
 		testDeterminantInternal("m3x3");
 		testDeterminantInternal("m5x5");
 
 		boolean thrown = false;
-		DecimalMatrix ma = new DecimalMatrix((double[][])testData.get("m4x5"));
+		DecimalMatrix ma = new DecimalMatrix((double[][]) testData.get("m4x5"));
 		try {
 			System.out.println(ma.determinant());
 		} catch (ArithmeticException ex) {
@@ -319,29 +321,32 @@ public class DecimalMatrixUTest {
 
 	private static void testAdjugateInternal(String testDataKey) throws Exception {
 
-		double[][] arr = (double[][])testData.get(testDataKey);
+		double[][] arr = (double[][]) testData.get(testDataKey);
 		DecimalMatrix ma = new DecimalMatrix(arr);
-		
+
 		boolean mustThrow = ma.rowCount() != ma.columnCount();
 		if (mustThrow) {
-			try { System.out.println(ma.adjugate().rowCount()); }
-			catch (ArithmeticException ex) { return; }
+			try {
+				System.out.println(ma.adjugate().rowCount());
+			} catch (ArithmeticException ex) {
+				return;
+			}
 			throw new Exception("adjugate (" + testDataKey + "): exception not thrown for non-square matrix");
 		}
 
 		double[][] identity = (double[][]) testData.get("identity" + testDataKey.substring(1));
-		double[][] expected = (double[][])testData.get("adjugate_" + testDataKey + "_Expected");
+		double[][] expected = (double[][]) testData.get("adjugate_" + testDataKey + "_Expected");
 
 		DecimalMatrix result = ma.adjugate();
 		areMatricesEqual("adjugate (" + testDataKey + "):", ma, result, new DecimalMatrix(expected));
 
 		DecimalMatrix identityXdeterminant = ma.multiply(result);
 		areMatricesEqual("adjugate (" + testDataKey + " - test identity 1)", ma, identityXdeterminant,
-			new DecimalMatrix(identity).multiply(ma.determinant()));
+				new DecimalMatrix(identity).multiply(ma.determinant()));
 
 		identityXdeterminant = result.multiply(ma);
 		areMatricesEqual("adjugate (" + testDataKey + " - test identity 2)", result, identityXdeterminant,
-			new DecimalMatrix(identity).multiply(ma.determinant()));
+				new DecimalMatrix(identity).multiply(ma.determinant()));
 	}
 
 	private static void testAdjugate() throws Exception {
@@ -354,28 +359,32 @@ public class DecimalMatrixUTest {
 	}
 
 	private static void testInvertInternal(String testDataKey) throws Exception {
-		double[][] arr = (double[][])testData.get(testDataKey);
+		double[][] arr = (double[][]) testData.get(testDataKey);
 		DecimalMatrix ma = new DecimalMatrix(arr);
-		
+
 		boolean mustThrow = ma.rowCount() != ma.columnCount();
 		if (mustThrow) {
-			try { System.out.println(ma.invert().rowCount()); }
-			catch (ArithmeticException ex) { return; }
+			try {
+				System.out.println(ma.invert().rowCount());
+			} catch (ArithmeticException ex) {
+				return;
+			}
 			throw new Exception("invert (" + testDataKey + "): exception not thrown for non-square matrix");
 		}
-		
+
 		mustThrow = doubleEquals(ma.determinant(), 0);
 		if (mustThrow) {
-			try { System.out.println(ma.invert().rowCount()); }
-			catch (ArithmeticException ex) { return; }
+			try {
+				System.out.println(ma.invert().rowCount());
+			} catch (ArithmeticException ex) {
+				return;
+			}
 			throw new Exception("invert (" + testDataKey + "): exception not thrown for matrix with determinant == 0");
 		}
 
-		DecimalMatrix identity = new DecimalMatrix(
-			(double[][]) testData.get("identity" + testDataKey.substring(1)));
+		DecimalMatrix identity = new DecimalMatrix((double[][]) testData.get("identity" + testDataKey.substring(1)));
 
-		DecimalMatrix expected = new DecimalMatrix(
-			(double[][])testData.get("invert_" + testDataKey + "_Expected"));
+		DecimalMatrix expected = new DecimalMatrix((double[][]) testData.get("invert_" + testDataKey + "_Expected"));
 
 		DecimalMatrix result = ma.invert();
 		areMatricesEqual("invert (" + testDataKey + "):", ma, result, expected);
@@ -394,30 +403,34 @@ public class DecimalMatrixUTest {
 		testInvertInternal("m5x4");
 		testInvertInternal("m5x5");
 	}
-	
+
 	private static void testInvertIntMatrixInternal(String testDataKey) throws Exception {
-		int[][] arr = (int[][])testData.get(testDataKey);
+		int[][] arr = (int[][]) testData.get(testDataKey);
 		IntMatrix im = new IntMatrix(arr);
 
 		boolean mustThrow = im.rowCount() != im.columnCount();
 		if (mustThrow) {
-			try { System.out.println(DecimalMatrix.invert(im).rowCount()); }
-			catch (Exception ex) { return; }
+			try {
+				System.out.println(DecimalMatrix.invert(im).rowCount());
+			} catch (Exception ex) {
+				return;
+			}
 			throw new Exception("invert (static): exception not thrown for non-square matrix");
 		}
 
 		mustThrow = im.determinant() == 0;
 		if (mustThrow) {
-			try { System.out.println(DecimalMatrix.invert(im).rowCount()); }
-			catch (Exception ex) { return; }
+			try {
+				System.out.println(DecimalMatrix.invert(im).rowCount());
+			} catch (Exception ex) {
+				return;
+			}
 			throw new Exception("invert (static): exception not thrown for matrix with determinant == 0");
 		}
 
-		DecimalMatrix identity = new DecimalMatrix(
-			(double[][]) testData.get("identity" + testDataKey.substring(1)));
+		DecimalMatrix identity = new DecimalMatrix((double[][]) testData.get("identity" + testDataKey.substring(1)));
 
-		DecimalMatrix expected = new DecimalMatrix(
-			(double[][])testData.get("invert_" + testDataKey + "_Expected"));
+		DecimalMatrix expected = new DecimalMatrix((double[][]) testData.get("invert_" + testDataKey + "_Expected"));
 
 		DecimalMatrix result = DecimalMatrix.invert(im);
 		areMatricesEqual("invert (static)", result, result, expected);
@@ -436,12 +449,11 @@ public class DecimalMatrixUTest {
 		testInvertIntMatrixInternal("mi5x5");
 		testInvertIntMatrixInternal("miZeroDet");
 	}
-    
-    public static int test(final String[] args) {
+
+	public static int test(final String[] args) {
 		try {
 			testData = DataReaderUTest.parseTestData("gist/Math/Matrix/DecimalMatrixUTest.txt");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.err.println("DecimalMatrixUTest: exception parsing test data\n" + ex);
 			return -1;
 		}

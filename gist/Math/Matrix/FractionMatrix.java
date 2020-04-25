@@ -430,7 +430,7 @@ public final class FractionMatrix {
 
 		return new FractionMatrix(result, true, false);
 	}
-	
+
 	public FractionMatrix multiply(FractionMatrix m) throws ArithmeticException {
 		int mRowCount = m.rowCount();
 		int mColumnCount = m.columnCount();
@@ -448,7 +448,7 @@ public final class FractionMatrix {
 
 		return new FractionMatrix(result, true, false);
 	}
-	
+
 	public FractionMatrix divide(int n) {
 		Fraction result[][] = new Fraction[matrix.length][];
 		for (int i = 0; i < matrix.length; ++i) {

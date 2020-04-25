@@ -30,7 +30,7 @@ public class TestRunner {
 		Date start = new Date();
 		System.out.println("");
 		System.out.println("Tests started @ " + start);
-		
+
 		failedTestCount += FractionUTest.test(args);
 		failedTestCount += IntMatrixUTest.test(args);
 		failedTestCount += DecimalMatrixUTest.test(args);

@@ -51,13 +51,13 @@ public class Fraction implements Comparable<Fraction> {
 
 	public static Fraction parseFraction(String s) {
 		String fs = s.trim();
-        int pos = fs.indexOf("/");
-        if (pos < 0) {
-            return new Fraction(Long.parseLong(fs), 1);
-        }
-        long n = Long.parseLong(fs.substring(0, pos));
-        long d = Long.parseLong(fs.substring(pos + 1));
-        return new Fraction(n, d);
+		int pos = fs.indexOf("/");
+		if (pos < 0) {
+			return new Fraction(Long.parseLong(fs), 1);
+		}
+		long n = Long.parseLong(fs.substring(0, pos));
+		long d = Long.parseLong(fs.substring(pos + 1));
+		return new Fraction(n, d);
 	}
 
 	public Fraction getCopy() {
@@ -89,10 +89,10 @@ public class Fraction implements Comparable<Fraction> {
 		if (denominator == fv[1])
 			return new Fraction(numerator + fv[0], denominator);
 
-		////faster, but overflows too easily
-		//return new Fraction(numerator * fv[1] + fv[0] * denominator, denominator * fv[1]);
-		
-		//slower, but overflows less often
+		//// faster, but overflows too easily
+		// return new Fraction(numerator * fv[1] + fv[0] * denominator, denominator * fv[1]);
+
+		// slower, but overflows less often
 		long mcm = minCommonMultiple(denominator, fv[1]);
 		return new Fraction(mcm / denominator * numerator + mcm / fv[1] * fv[0], mcm);
 	}
@@ -104,16 +104,16 @@ public class Fraction implements Comparable<Fraction> {
 	public Fraction subtract(Fraction f) {
 		long[] fv = f.getPair();
 
-		////faster, but overflows too easily
-		//return new Fraction(numerator * fv[1] - fv[0] * denominator, denominator * fv[1]);
+		//// faster, but overflows too easily
+		// return new Fraction(numerator * fv[1] - fv[0] * denominator, denominator * fv[1]);
 
-		//slower, but overflows less often
+		// slower, but overflows less often
 		long mcm = minCommonMultiple(denominator, fv[1]);
 		return new Fraction(mcm / denominator * numerator - mcm / fv[1] * fv[0], mcm);
 	}
 
 	public Fraction multiply(long i) {
-		//return new Fraction(numerator * i, denominator);
+		// return new Fraction(numerator * i, denominator);
 
 		long mcd = maxCommonDivisor(i, denominator);
 		return new Fraction(i / mcd * numerator, denominator / mcd);
@@ -121,7 +121,7 @@ public class Fraction implements Comparable<Fraction> {
 
 	public Fraction multiply(Fraction f) {
 		long[] fv = f.getPair();
-		//return new Fraction(numerator * fv[0], denominator * fv[1]);
+		// return new Fraction(numerator * fv[0], denominator * fv[1]);
 
 		long mcd = maxCommonDivisor(numerator, fv[1]);
 		long n = numerator / mcd;
@@ -135,14 +135,14 @@ public class Fraction implements Comparable<Fraction> {
 	}
 
 	public Fraction divide(long i) {
-		//return new Fraction(numerator, denominator * i);
+		// return new Fraction(numerator, denominator * i);
 		long mcd = maxCommonDivisor(numerator, i);
 		return new Fraction(numerator / mcd, i / mcd * denominator);
 	}
 
 	public Fraction divide(Fraction f) {
 		long[] fv = f.getPair();
-		//return new Fraction(numerator * fv[1], denominator * fv[0]);
+		// return new Fraction(numerator * fv[1], denominator * fv[0]);
 
 		long mcd = maxCommonDivisor(numerator, fv[0]);
 		long n = numerator / mcd;
@@ -179,28 +179,31 @@ public class Fraction implements Comparable<Fraction> {
 
 	@Override
 	public boolean equals(Object o) {
-		if (o == null) return false;
-		if (o == this) return true;
-		if (o.getClass() ==  Fraction.class) {
+		if (o == null)
+			return false;
+		if (o == this)
+			return true;
+		if (o.getClass() == Fraction.class) {
 			Fraction c = (Fraction) o;
 			Long[] pair1 = simplify(numerator, denominator);
 			Long[] pair2 = simplify(c.numerator, c.denominator);
-			return Long.compare(pair1[0], pair2[0]) == 0 &&
-				Long.compare(pair1[1], pair2[1]) == 0;
+			return Long.compare(pair1[0], pair2[0]) == 0 && Long.compare(pair1[1], pair2[1]) == 0;
 		}
 		return false;
 	}
 
 	@Override
-    public int hashCode() {
+	public int hashCode() {
 		Long[] pair = simplify(numerator, denominator);
-        return (13 * pair[0].hashCode() + 17 * pair[1].hashCode()) / 221;
+		return (13 * pair[0].hashCode() + 17 * pair[1].hashCode()) / 221;
 	}
 
 	@Override
 	public int compareTo(Fraction f) {
-		if (f == null) throw new NullPointerException();
-		if (f == this) return 0;
+		if (f == null)
+			throw new NullPointerException();
+		if (f == this)
+			return 0;
 
 		Long[] pair1 = simplify(numerator, denominator);
 		Long[] pair2 = simplify(f.numerator, f.denominator);
@@ -223,7 +226,7 @@ public class Fraction implements Comparable<Fraction> {
 			i *= -1;
 			j *= -1;
 		}
-		return new Long[] {i, j};
+		return new Long[] { i, j };
 	}
 
 	public static Fraction add(Fraction[] terms) {
@@ -267,9 +270,12 @@ public class Fraction implements Comparable<Fraction> {
 	}
 
 	public static long minCommonMultiple(long a, long b) {
-		if (a == b) return a;
-		if (a < b && b % a == 0) return b;
-		else if (a > b && a % b == 0) return a;
+		if (a == b)
+			return a;
+		if (a < b && b % a == 0)
+			return b;
+		else if (a > b && a % b == 0)
+			return a;
 		long mcd = maxCommonDivisor(a, b);
 		return a / mcd * b;
 	}

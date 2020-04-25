@@ -26,7 +26,7 @@ if ($proc.ExitCode -eq 0) {
 	if ($proc.ExitCode -eq 0) {
 		Remove-Item TestRunner.class
 		Get-ChildItem *UTest.class -Recurse | Remove-Item
-	
+
 		Copy-Item ..\META-INF . -Recurse
 		$manifestFile = Get-Item .\META-INF\MANIFEST.MF
 		$verStr = "$($version.Major).$($version.Minor).$($version.Build)"
@@ -40,16 +40,19 @@ if ($proc.ExitCode -eq 0) {
 		$proc = Start-Process (Get-Alias jar).Definition "-cvfM $jarName ." -PassThru -Wait -NoNewWindow
 		if ($proc.ExitCode -eq 0) {
 			Copy-Item $jarName ..
-		} else {
+		}
+		else {
 			Write-Error "build failed (jar): code $($proc.ExitCode)"
 		}
-	} else {
+	}
+	else {
 		Write-Error "build failed (unit tests): code $($proc.ExitCode)"
 	}
 
 	Set-Location $restore
 	Remove-Item "$PSScriptRoot\_build" -Recurse -Force -ErrorAction SilentlyContinue
-	
-} else {
+
+}
+else {
 	Write-Error "build failed (javac): code $($proc.ExitCode)"
 }

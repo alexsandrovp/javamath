@@ -26,12 +26,12 @@ public class IntMatrixUTest {
 
 	private static Map<String, Object> testData = new Hashtable<String, Object>();
 
-	private static void areMatricesEqual(String testName, IntMatrix reference,
-		IntMatrix transformed, IntMatrix expected) throws Exception {
+	private static void areMatricesEqual(String testName, IntMatrix reference, IntMatrix transformed,
+			IntMatrix expected) throws Exception {
 
 		if (transformed.rowCount() != reference.rowCount())
 			throw new Exception(testName + ": wrong row count (1)");
-	
+
 		if (transformed.rowCount() != expected.rowCount())
 			throw new Exception(testName + ": wrong row count (2)");
 
@@ -74,15 +74,15 @@ public class IntMatrixUTest {
 			}
 		}
 	}
-	
+
 	private static void testConstructor() throws Exception {
-		int[][] m4x5 = (int[][])testData.get("m4x5");
+		int[][] m4x5 = (int[][]) testData.get("m4x5");
 		testConstructor(m4x5);
 	}
 
 	private static void testGetElement() throws Exception {
 		IntMatrix ma;
-		int[][] m4x5 = (int[][])testData.get("m4x5");
+		int[][] m4x5 = (int[][]) testData.get("m4x5");
 
 		ma = new IntMatrix(m4x5);
 		if (ma.get(1, 3) != 9)
@@ -93,18 +93,18 @@ public class IntMatrixUTest {
 	}
 
 	private static void testTranspose() throws Exception {
-		int[][] m5x4 = (int[][])testData.get("m5x4");
-		int[][] transpose_m5x4_Expected = (int[][])testData.get("transpose_m5x4_Expected");
+		int[][] m5x4 = (int[][]) testData.get("m5x4");
+		int[][] transpose_m5x4_Expected = (int[][]) testData.get("transpose_m5x4_Expected");
 		IntMatrix ma = new IntMatrix(m5x4).transpose();
 		areMatricesEqual("transpose", ma, ma, new IntMatrix(transpose_m5x4_Expected));
 	}
 
 	private static void testHadamardProduct() throws Exception {
-		int[][] m2x3 = (int[][])testData.get("m2x3");
-		int[][] hadamard_Multiplier = (int[][])testData.get("hadamard_Multiplier");
+		int[][] m2x3 = (int[][]) testData.get("m2x3");
+		int[][] hadamard_Multiplier = (int[][]) testData.get("hadamard_Multiplier");
 		IntMatrix hadamard_Multiplier_X_m2x3_Expected = new IntMatrix(
-			(int[][])testData.get("hadamard_Multiplier_X_m2x3_Expected"));
-		
+				(int[][]) testData.get("hadamard_Multiplier_X_m2x3_Expected"));
+
 		IntMatrix ma = new IntMatrix(m2x3);
 		IntMatrix result = ma.hadamard_product(hadamard_Multiplier);
 		areMatricesEqual("hadamard_product(array)", ma, result, hadamard_Multiplier_X_m2x3_Expected);
@@ -114,10 +114,10 @@ public class IntMatrixUTest {
 	}
 
 	private static void testAddScalar() throws Exception {
-		int[][] m2x2 = (int[][])testData.get("m2x2");
-		int addScalar_Addend = (int)testData.get("addScalar_Addend");
+		int[][] m2x2 = (int[][]) testData.get("m2x2");
+		int addScalar_Addend = (int) testData.get("addScalar_Addend");
 		IntMatrix addScalar_Addend_p_m2x2_Expected = new IntMatrix(
-			(int[][])testData.get("addScalar_Addend_+_m2x2_Expected"));
+				(int[][]) testData.get("addScalar_Addend_+_m2x2_Expected"));
 
 		IntMatrix ma = new IntMatrix(m2x2);
 		IntMatrix result = ma.add(addScalar_Addend);
@@ -125,10 +125,10 @@ public class IntMatrixUTest {
 	}
 
 	private static void testAdd() throws Exception {
-		int[][] m2x2 = (int[][])testData.get("m2x2");
-		int[][] addMatrix_Addend = (int[][])testData.get("addMatrix_Addend");
+		int[][] m2x2 = (int[][]) testData.get("m2x2");
+		int[][] addMatrix_Addend = (int[][]) testData.get("addMatrix_Addend");
 		IntMatrix addMatrix_Addend_p_m2x2_Expected = new IntMatrix(
-			(int[][])testData.get("addMatrix_Addend_+_m2x2_Expected"));
+				(int[][]) testData.get("addMatrix_Addend_+_m2x2_Expected"));
 
 		IntMatrix ma = new IntMatrix(m2x2);
 		IntMatrix result = ma.add(addMatrix_Addend);
@@ -139,10 +139,9 @@ public class IntMatrixUTest {
 	}
 
 	private static void testMultiplyScalar() throws Exception {
-		int[][] m2x2 = (int[][])testData.get("m2x2");
+		int[][] m2x2 = (int[][]) testData.get("m2x2");
 		int multiplyScalar_Multiplier = (int) testData.get("multiplyScalar_Multiplier");
-		IntMatrix expected = new IntMatrix(
-			(int[][])testData.get("multiplyScalar_Multiplier_X_m2x2_Expected"));
+		IntMatrix expected = new IntMatrix((int[][]) testData.get("multiplyScalar_Multiplier_X_m2x2_Expected"));
 
 		IntMatrix ma = new IntMatrix(m2x2);
 		IntMatrix result = ma.multiply(multiplyScalar_Multiplier);
@@ -150,17 +149,17 @@ public class IntMatrixUTest {
 	}
 
 	private static void testMultiply() throws Exception {
-		int[][] m4x5 = (int[][])testData.get("m4x5");
-		int[][] m5x4 = (int[][])testData.get("m5x4");
+		int[][] m4x5 = (int[][]) testData.get("m4x5");
+		int[][] m5x4 = (int[][]) testData.get("m5x4");
 
 		IntMatrix multiplyMatrix_m4x5_X_m5x4_Expected = new IntMatrix(
-			(int[][])testData.get("multiplyMatrix_m4x5_X_m5x4_Expected"));
+				(int[][]) testData.get("multiplyMatrix_m4x5_X_m5x4_Expected"));
 		IntMatrix multiplyMatrix_m5x4_X_m4x5_Expected = new IntMatrix(
-			(int[][])testData.get("multiplyMatrix_m5x4_X_m4x5_Expected"));
+				(int[][]) testData.get("multiplyMatrix_m5x4_X_m4x5_Expected"));
 
 		IntMatrix ma = new IntMatrix(m4x5);
 		IntMatrix mb = new IntMatrix(m5x4);
-		
+
 		IntMatrix result = ma.multiply(mb);
 		areMatricesEqual("multiply(4x4)", result, result, multiplyMatrix_m4x5_X_m5x4_Expected);
 
@@ -169,9 +168,9 @@ public class IntMatrixUTest {
 	}
 
 	private static void testDeterminantInternal(String testDataKey) throws Exception {
-		int[][] arr = (int[][])testData.get(testDataKey);
-		int expected = (int)testData.get("determinant_" + testDataKey + "_Expected");
-		
+		int[][] arr = (int[][]) testData.get(testDataKey);
+		int expected = (int) testData.get("determinant_" + testDataKey + "_Expected");
+
 		IntMatrix ma = new IntMatrix(arr);
 		int determinant = ma.determinant();
 		if (determinant != expected)
@@ -185,12 +184,13 @@ public class IntMatrixUTest {
 		testDeterminantInternal("m5x5");
 
 		boolean didntThrow = false;
-		int[][] notsquare = (int[][])testData.get("m4x5");
+		int[][] notsquare = (int[][]) testData.get("m4x5");
 		IntMatrix ma = new IntMatrix(notsquare);
 		try {
 			System.out.println(ma.determinant());
 			didntThrow = true;
-		} catch (Exception ex) {}
+		} catch (Exception ex) {
+		}
 
 		if (didntThrow)
 			throw new Exception("determinant: exception not thrown for non-square matrix");
@@ -198,22 +198,22 @@ public class IntMatrixUTest {
 
 	private static void testAdjugateInternal(String testDataKey) throws Exception {
 
-		int[][] arr = (int[][])testData.get(testDataKey);
+		int[][] arr = (int[][]) testData.get(testDataKey);
 		int[][] identity = (int[][]) testData.get("identity" + testDataKey.substring(1));
-		int[][] expected = (int[][])testData.get("adjugate_" + testDataKey + "_Expected");
+		int[][] expected = (int[][]) testData.get("adjugate_" + testDataKey + "_Expected");
 
 		IntMatrix ma = new IntMatrix(arr);
 		IntMatrix result = ma.adjugate();
-		
+
 		areMatricesEqual("adjugate (" + testDataKey + "):", ma, result, new IntMatrix(expected));
 
 		IntMatrix identityXdeterminant = ma.multiply(result);
 		areMatricesEqual("adjugate (" + testDataKey + " - test identity 1)", ma, identityXdeterminant,
-			new IntMatrix(identity).multiply(ma.determinant()));
+				new IntMatrix(identity).multiply(ma.determinant()));
 
 		identityXdeterminant = result.multiply(ma);
 		areMatricesEqual("adjugate (" + testDataKey + " - test identity 2)", result, identityXdeterminant,
-			new IntMatrix(identity).multiply(ma.determinant()));
+				new IntMatrix(identity).multiply(ma.determinant()));
 	}
 
 	private static void testAdjugate() throws Exception {
@@ -223,12 +223,12 @@ public class IntMatrixUTest {
 		testAdjugateInternal("m5x5");
 
 		boolean didntThrow = false;
-		int[][] m5x4 = (int[][])testData.get("m5x4");
+		int[][] m5x4 = (int[][]) testData.get("m5x4");
 		try {
 			System.out.println(new IntMatrix(m5x4).adjugate().rowCount());
 			didntThrow = true;
+		} catch (Exception ex) {
 		}
-		catch (Exception ex) { }
 		if (didntThrow)
 			throw new Exception("adjugate: exception not throw for non-square matrix");
 	}
@@ -237,8 +237,7 @@ public class IntMatrixUTest {
 
 		try {
 			testData = DataReaderUTest.parseTestData("gist/Math/Matrix/IntMatrixUTest.txt");
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.err.println("IntMatrixUTest: exception parsing test data\n" + ex);
 			return -1;
 		}
