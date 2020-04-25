@@ -1,0 +1,140 @@
+#m1x1 int[][]
+7
+
+#m2x2 int[][]
+1, 2
+6, 7
+
+#m2x3 int[][]
+3, 7, 3
+2, 1, 5
+
+#m3x3 int[][]
+1, 2, 3
+6, 7, 8
+11, 12, 13
+
+#m4x5 int[][]
+1, 2, 3, 4, 5
+6, 7, 8, 9, 10
+11, 12, 13, 14, 15
+16, 17, 18, 19, 20
+
+#m5x4 int[][]
+ 1,  2,  3,  4
+ 6,  7,  8,  9
+11, 12, 13, 14
+ 6,  5,  2,  2
+16, 17, 18, 19
+
+#m5x5 int[][]
+1, 2, 3, 5, 5
+10, 2, 8, 7, 6
+1, 2, 1, 2, 2
+7, 11, 15, 17, 13
+21, 0, 3, 3, 1
+
+#transpose_m5x4_Expected int[][]
+1, 6, 11, 6, 16
+2, 7, 12, 5, 17
+3, 8, 13, 2, 18
+4, 9, 14, 2, 19
+
+#identity1x1 int[][]
+1
+
+#identity2x2 int[][]
+1, 0
+0, 1
+
+#identity3x3 int[][]
+1, 0, 0
+0, 1, 0
+0, 0, 1
+
+#identity4x4 int[][]
+1, 0, 0, 0
+0, 1, 0, 0
+0, 0, 1, 0
+0, 0, 0, 1
+
+#identity5x5 int[][]
+1, 0, 0, 0, 0
+0, 1, 0, 0, 0
+0, 0, 1, 0, 0
+0, 0, 0, 1, 0
+0, 0, 0, 0, 1
+
+#hadamard_Multiplier int[][]
+5, 4, 0
+2, 3, 1
+
+#hadamard_Multiplier_X_m2x3_Expected int[][]
+15, 28, 0
+4, 3, 5
+
+#addScalar_Addend int
+3
+
+#addScalar_Addend_+_m2x2_Expected int[][]
+4,  5
+9, 10
+
+#addMatrix_Addend int[][]
+5, 4
+2, 3
+
+#addMatrix_Addend_+_m2x2_Expected int[][]
+6, 6
+8, 10
+
+#multiplyScalar_Multiplier int
+3
+
+#multiplyScalar_Multiplier_X_m2x2_Expected int[][]
+3,  6
+18, 21
+
+#multiplyMatrix_m4x5_X_m5x4_Expected int[][]
+150, 157, 156, 167
+350, 372, 376, 407
+550, 587, 596, 647
+750, 802, 816, 887
+
+#multiplyMatrix_m5x4_X_m4x5_Expected int[][]
+110, 120, 130, 140, 150
+280, 310, 340, 370, 400
+450, 500, 550, 600, 650
+90, 105, 120, 135, 150
+620, 690, 760, 830, 900
+
+#determinant_m1x1_Expected int
+7
+
+#determinant_m2x2_Expected int
+-5
+
+#determinant_m3x3_Expected int
+0
+
+#determinant_m5x5_Expected int
+1476
+
+#adjugate_m1x1_Expected int[][]
+1
+
+#adjugate_m2x2_Expected int[][]
+7, -2
+-6,  1
+
+#adjugate_m3x3_Expected int[][]
+-5,  10, -5
+10, -20, 10
+-5,  10, -5
+
+#adjugate_m5x5_Expected int[][]
+-49,    42,   216,   -38,    55
+-562,   60,  1152,    16,   -62
+-567,  486,   180,   -18,  -207
+930, -1008, -2232,   420,   402
+-60,   684,  1620,  -408,  -264
