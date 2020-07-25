@@ -264,6 +264,48 @@ public class Fraction implements Comparable<Fraction> {
 
 		return mcm;
 	}
+	
+	public static Fraction farey(double d, double precision, int maxStepCount) {
+
+		double r;
+		long num, den;
+		final int n = (int) d;
+		final double e = d - n;
+		int i = 0;
+
+		Fraction f = new Fraction (1, 2);
+		Fraction l = new Fraction (0, 1);
+		Fraction u = new Fraction (1, 1);
+
+		while(true) {
+			if (i++ >= maxStepCount) {
+				break;
+			}
+
+			r = f.calc();
+			if (r == e) {
+				break;
+			}
+			r = r - e;
+			if (r < precision && r > -precision) {
+				break;
+			}
+			else if (r > 0) {
+				u = f;
+			}
+			else {
+				l = f;
+			}
+
+			num = l.getNumerator() + u.getNumerator();
+			den = l.getDenominator() + u.getDenominator();
+			f = new Fraction (num, den);
+		}
+
+		System.out.println("Converged after " + i + " steps");
+
+		return f.add(n);
+	}
 
 	public static long maxCommonDivisor(long a, long b) {
 		return b == 0 ? a : maxCommonDivisor(b, a % b);
